@@ -1,0 +1,17 @@
+C:\Users\Mikita_Zayats1\Documents\GitHub\TechnologyProvider\src\TechnologyProvider.Cqrs\bin\Debug\net6.0\TechnologyProvider.Cqrs.deps.json
+C:\Users\Mikita_Zayats1\Documents\GitHub\TechnologyProvider\src\TechnologyProvider.Cqrs\bin\Debug\net6.0\TechnologyProvider.Cqrs.runtimeconfig.json
+C:\Users\Mikita_Zayats1\Documents\GitHub\TechnologyProvider\src\TechnologyProvider.Cqrs\bin\Debug\net6.0\TechnologyProvider.Cqrs.dll
+C:\Users\Mikita_Zayats1\Documents\GitHub\TechnologyProvider\src\TechnologyProvider.Cqrs\bin\Debug\net6.0\TechnologyProvider.Cqrs.pdb
+C:\Users\Mikita_Zayats1\Documents\GitHub\TechnologyProvider\src\TechnologyProvider.Cqrs\bin\Debug\net6.0\TechnologyProvider.DataAccess.dll
+C:\Users\Mikita_Zayats1\Documents\GitHub\TechnologyProvider\src\TechnologyProvider.Cqrs\bin\Debug\net6.0\TechnologyProvider.DataAccess.pdb
+C:\Users\Mikita_Zayats1\Documents\GitHub\TechnologyProvider\src\TechnologyProvider.Cqrs\obj\Debug\net6.0\TechnologyProvider.Cqrs.csproj.AssemblyReference.cache
+C:\Users\Mikita_Zayats1\Documents\GitHub\TechnologyProvider\src\TechnologyProvider.Cqrs\obj\Debug\net6.0\TechnologyProvider.Cqrs.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Mikita_Zayats1\Documents\GitHub\TechnologyProvider\src\TechnologyProvider.Cqrs\obj\Debug\net6.0\TechnologyProvider.Cqrs.AssemblyInfoInputs.cache
+C:\Users\Mikita_Zayats1\Documents\GitHub\TechnologyProvider\src\TechnologyProvider.Cqrs\obj\Debug\net6.0\TechnologyProvider.Cqrs.AssemblyInfo.cs
+C:\Users\Mikita_Zayats1\Documents\GitHub\TechnologyProvider\src\TechnologyProvider.Cqrs\obj\Debug\net6.0\TechnologyProvider.Cqrs.csproj.CoreCompileInputs.cache
+C:\Users\Mikita_Zayats1\Documents\GitHub\TechnologyProvider\src\TechnologyProvider.Cqrs\obj\Debug\net6.0\TechnologyProvider.Cqrs.csproj.CopyComplete
+C:\Users\Mikita_Zayats1\Documents\GitHub\TechnologyProvider\src\TechnologyProvider.Cqrs\obj\Debug\net6.0\TechnologyProvider.Cqrs.dll
+C:\Users\Mikita_Zayats1\Documents\GitHub\TechnologyProvider\src\TechnologyProvider.Cqrs\obj\Debug\net6.0\refint\TechnologyProvider.Cqrs.dll
+C:\Users\Mikita_Zayats1\Documents\GitHub\TechnologyProvider\src\TechnologyProvider.Cqrs\obj\Debug\net6.0\TechnologyProvider.Cqrs.pdb
+C:\Users\Mikita_Zayats1\Documents\GitHub\TechnologyProvider\src\TechnologyProvider.Cqrs\obj\Debug\net6.0\TechnologyProvider.Cqrs.genruntimeconfig.cache
+C:\Users\Mikita_Zayats1\Documents\GitHub\TechnologyProvider\src\TechnologyProvider.Cqrs\obj\Debug\net6.0\ref\TechnologyProvider.Cqrs.dll
