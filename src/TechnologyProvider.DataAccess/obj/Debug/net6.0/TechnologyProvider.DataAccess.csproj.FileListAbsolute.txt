@@ -1,0 +1,14 @@
+C:\Users\Mikita_Zayats1\Documents\GitHub\TechnologyProvider\src\TechnologyProvider.DataAccess\bin\Debug\net6.0\TechnologyProvider.DataAccess.deps.json
+C:\Users\Mikita_Zayats1\Documents\GitHub\TechnologyProvider\src\TechnologyProvider.DataAccess\bin\Debug\net6.0\TechnologyProvider.DataAccess.runtimeconfig.json
+C:\Users\Mikita_Zayats1\Documents\GitHub\TechnologyProvider\src\TechnologyProvider.DataAccess\bin\Debug\net6.0\TechnologyProvider.DataAccess.dll
+C:\Users\Mikita_Zayats1\Documents\GitHub\TechnologyProvider\src\TechnologyProvider.DataAccess\bin\Debug\net6.0\TechnologyProvider.DataAccess.pdb
+C:\Users\Mikita_Zayats1\Documents\GitHub\TechnologyProvider\src\TechnologyProvider.DataAccess\obj\Debug\net6.0\TechnologyProvider.DataAccess.csproj.AssemblyReference.cache
+C:\Users\Mikita_Zayats1\Documents\GitHub\TechnologyProvider\src\TechnologyProvider.DataAccess\obj\Debug\net6.0\TechnologyProvider.DataAccess.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Mikita_Zayats1\Documents\GitHub\TechnologyProvider\src\TechnologyProvider.DataAccess\obj\Debug\net6.0\TechnologyProvider.DataAccess.AssemblyInfoInputs.cache
+C:\Users\Mikita_Zayats1\Documents\GitHub\TechnologyProvider\src\TechnologyProvider.DataAccess\obj\Debug\net6.0\TechnologyProvider.DataAccess.AssemblyInfo.cs
+C:\Users\Mikita_Zayats1\Documents\GitHub\TechnologyProvider\src\TechnologyProvider.DataAccess\obj\Debug\net6.0\TechnologyProvider.DataAccess.csproj.CoreCompileInputs.cache
+C:\Users\Mikita_Zayats1\Documents\GitHub\TechnologyProvider\src\TechnologyProvider.DataAccess\obj\Debug\net6.0\TechnologyProvider.DataAccess.dll
+C:\Users\Mikita_Zayats1\Documents\GitHub\TechnologyProvider\src\TechnologyProvider.DataAccess\obj\Debug\net6.0\refint\TechnologyProvider.DataAccess.dll
+C:\Users\Mikita_Zayats1\Documents\GitHub\TechnologyProvider\src\TechnologyProvider.DataAccess\obj\Debug\net6.0\TechnologyProvider.DataAccess.pdb
+C:\Users\Mikita_Zayats1\Documents\GitHub\TechnologyProvider\src\TechnologyProvider.DataAccess\obj\Debug\net6.0\TechnologyProvider.DataAccess.genruntimeconfig.cache
+C:\Users\Mikita_Zayats1\Documents\GitHub\TechnologyProvider\src\TechnologyProvider.DataAccess\obj\Debug\net6.0\ref\TechnologyProvider.DataAccess.dll
