@@ -6,6 +6,7 @@ C:\Users\Mikita_Zayats1\Documents\GitHub\TechnologyProvider\src\TechnologyProvid
 C:\Users\Mikita_Zayats1\Documents\GitHub\TechnologyProvider\src\TechnologyProvider.Api\TechnologyProvider.Api\bin\Debug\net6.0\TechnologyProvider.Api.dll
 C:\Users\Mikita_Zayats1\Documents\GitHub\TechnologyProvider\src\TechnologyProvider.Api\TechnologyProvider.Api\bin\Debug\net6.0\TechnologyProvider.Api.pdb
 C:\Users\Mikita_Zayats1\Documents\GitHub\TechnologyProvider\src\TechnologyProvider.Api\TechnologyProvider.Api\bin\Debug\net6.0\FluentValidation.dll
+C:\Users\Mikita_Zayats1\Documents\GitHub\TechnologyProvider\src\TechnologyProvider.Api\TechnologyProvider.Api\bin\Debug\net6.0\FluentValidation.AspNetCore.dll
 C:\Users\Mikita_Zayats1\Documents\GitHub\TechnologyProvider\src\TechnologyProvider.Api\TechnologyProvider.Api\bin\Debug\net6.0\FluentValidation.DependencyInjectionExtensions.dll
 C:\Users\Mikita_Zayats1\Documents\GitHub\TechnologyProvider\src\TechnologyProvider.Api\TechnologyProvider.Api\bin\Debug\net6.0\Humanizer.dll
 C:\Users\Mikita_Zayats1\Documents\GitHub\TechnologyProvider\src\TechnologyProvider.Api\TechnologyProvider.Api\bin\Debug\net6.0\MediatR.dll
@@ -42,4 +43,3 @@ C:\Users\Mikita_Zayats1\Documents\GitHub\TechnologyProvider\src\TechnologyProvid
 C:\Users\Mikita_Zayats1\Documents\GitHub\TechnologyProvider\src\TechnologyProvider.Api\TechnologyProvider.Api\obj\Debug\net6.0\TechnologyProvider.Api.pdb
 C:\Users\Mikita_Zayats1\Documents\GitHub\TechnologyProvider\src\TechnologyProvider.Api\TechnologyProvider.Api\obj\Debug\net6.0\TechnologyProvider.Api.genruntimeconfig.cache
 C:\Users\Mikita_Zayats1\Documents\GitHub\TechnologyProvider\src\TechnologyProvider.Api\TechnologyProvider.Api\obj\Debug\net6.0\ref\TechnologyProvider.Api.dll
-C:\Users\Mikita_Zayats1\Documents\GitHub\TechnologyProvider\src\TechnologyProvider.Api\TechnologyProvider.Api\bin\Debug\net6.0\FluentValidation.AspNetCore.dll

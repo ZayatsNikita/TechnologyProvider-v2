@@ -1,17 +1,31 @@
 ﻿using FluentValidation.AspNetCore;
-using TechnologyProvider.Cqrs.Infrastructure.ServiceCollectionExtensions;
-using TechnologyProvider.Cqrs.Commands.Technologies.Core;
 using TechnologyProvider.Api.Infrastructure.Filters;
+using TechnologyProvider.Cqrs.Commands.Technologies.Core;
+using TechnologyProvider.Cqrs.Infrastructure.Extensions;
 
+/// <summary>
+/// Class for web host configuration.
+/// </summary>
 public class Startup
 {
+    /// <summary>
+    /// Initializes a new instance of the <see cref="Startup"/> class.
+    /// </summary>
+    /// <param name="configuration">Program configuration.</param>
     public Startup(IConfiguration configuration)
     {
-        Configuration = configuration;
+        this.Configuration = configuration;
     }
 
+    /// <summary>
+    /// Gets program configuration.
+    /// </summary>
     public IConfiguration Configuration { get; }
 
+    /// <summary>
+    /// Configuration services.
+    /// </summary>
+    /// <param name="services">Services colleciton.</param>
     public void ConfigureServices(IServiceCollection services)
     {
         services.AddControllers(options =>
@@ -20,10 +34,26 @@ public class Startup
         }).AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<TechonologyModelValidator>());
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen();
+        services.AddCors(options =>
+        {
+            options.AddDefaultPolicy(
+                policy =>
+                {
+                    policy.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader();
+                });
+        });
 
-        services.AddCommandsAndQueriesHandlers();
+        var connectionString = this.Configuration["ConnectionStrings:PostgreDbConnectionString"];
+        services.AddCommandsAndQueriesHandlers(connectionString);
     }
 
+    /// <summary>
+    /// Application configuration.
+    /// </summary>
+    /// <param name="app">WebApplication object.</param>
+    /// <param name="env">WebHostEnvironment object.</param>
     public void Configure(WebApplication app, IWebHostEnvironment env)
     {
         if (env.IsDevelopment())
@@ -32,8 +62,14 @@ public class Startup
             app.UseSwaggerUI();
         }
 
+        app.UseCors();
         app.UseHttpsRedirection();
+        app.UseRouting();
+
         app.UseAuthorization();
-        app.MapControllers();
+        app.UseEndpoints(endpoints =>
+        {
+            endpoints.MapControllers();
+        });
     }
 }

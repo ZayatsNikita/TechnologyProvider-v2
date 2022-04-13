@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "9cM9d3Abr0J7V2KEnYWXbn/cpKBqKrhpSbpRTk90jgiY3pmDyu4r2G2u4oNfFK4xZKVn31BC9wrryJlIhu6GAw==",
+  "dgSpecHash": "JKLvO+FM07eSsww2loMrPEQAhx1RDZa9YQpC2+ojKAFfslM9Z9PT93Ok20g6mZ8wnhUvk7ldIpPjN3rCGX6F+Q==",
   "success": true,
   "projectFilePath": "C:\\Users\\Mikita_Zayats1\\Documents\\GitHub\\TechnologyProvider\\src\\TechnologyProvider.Api\\TechnologyProvider.Api\\TechnologyProvider.Api.csproj",
   "expectedPackageFiles": [
@@ -30,6 +30,7 @@
     "C:\\Users\\Mikita_Zayats1\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
     "C:\\Users\\Mikita_Zayats1\\.nuget\\packages\\npgsql\\6.0.0\\npgsql.6.0.0.nupkg.sha512",
     "C:\\Users\\Mikita_Zayats1\\.nuget\\packages\\npgsql.entityframeworkcore.postgresql\\6.0.0\\npgsql.entityframeworkcore.postgresql.6.0.0.nupkg.sha512",
+    "C:\\Users\\Mikita_Zayats1\\.nuget\\packages\\stylecop.analyzers\\1.1.118\\stylecop.analyzers.1.1.118.nupkg.sha512",
     "C:\\Users\\Mikita_Zayats1\\.nuget\\packages\\swashbuckle.aspnetcore\\6.2.3\\swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
     "C:\\Users\\Mikita_Zayats1\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.2.3\\swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
     "C:\\Users\\Mikita_Zayats1\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.2.3\\swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",

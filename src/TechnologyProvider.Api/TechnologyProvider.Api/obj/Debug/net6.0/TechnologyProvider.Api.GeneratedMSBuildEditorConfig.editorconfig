@@ -14,3 +14,7 @@ build_property.SupportLocalizedComponentNames =
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
 build_property.MSBuildProjectDirectory = C:\Users\Mikita_Zayats1\Documents\GitHub\TechnologyProvider\src\TechnologyProvider.Api\TechnologyProvider.Api
 build_property._RazorSourceGeneratorDebug = 
+
+[C:/Users/Mikita_Zayats1/Documents/GitHub/TechnologyProvider/stylecop.json]
+build_metadata.AdditionalFiles.TargetPath = 
+build_metadata.AdditionalFiles.CssScope = 
