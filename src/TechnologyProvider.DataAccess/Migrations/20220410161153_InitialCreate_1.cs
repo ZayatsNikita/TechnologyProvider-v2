@@ -1,5 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿#pragma warning disable SA1200 // Using directives should be placed correctly
+using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
+#pragma warning restore SA1200 // Using directives should be placed correctly
 
 #nullable disable
 
@@ -7,6 +9,7 @@ namespace TechnologyProvider.DataAccess.Migrations
 {
     public partial class InitialCreate_1 : Migration
     {
+        /// <inheritdoc/>
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
@@ -66,6 +69,7 @@ namespace TechnologyProvider.DataAccess.Migrations
                 column: "CategoryId");
         }
 
+        /// <inheritdoc/>
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(

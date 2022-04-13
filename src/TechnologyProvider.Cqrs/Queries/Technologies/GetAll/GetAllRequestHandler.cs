@@ -2,42 +2,43 @@
 using Microsoft.EntityFrameworkCore;
 using TechnologyProvider.Cqrs.Core;
 using TechnologyProvider.Cqrs.Queries.Technologies.Core;
-using TechnologyProvider.DataAccess.Services;
+using TechnologyProvider.DataAccess.Infrastructure.EntityFramework;
 
 namespace TechnologyProvider.Cqrs.Queries.Technologies.GetAll
 {
-    public class GetAllRequestHandler : IRequestHandler<GetAllRequest, Result<IEnumerable<TechnologyModel>>>
+    /// <summary>
+    /// Get all request handler.
+    /// </summary>
+    public class GetAllRequestHandler : IRequestHandler<GetAllRequest, Result<IEnumerable<TechnologyResponseModel>>>
     {
-        private readonly TechnologyProviderDbContext _dbContext;
+        private readonly TechnologyProviderDbContext dbContext;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetAllRequestHandler"/> class.
+        /// </summary>
+        /// <param name="dbContext">Db context.</param>
         public GetAllRequestHandler(TechnologyProviderDbContext dbContext)
         {
-            _dbContext = dbContext;
+            this.dbContext = dbContext;
         }
 
-        public async Task<Result<IEnumerable<TechnologyModel>>> Handle(GetAllRequest request, CancellationToken cancellationToken)
+        /// <summary>
+        /// The method that processes the request.
+        /// </summary>
+        /// <param name="request">Request object.</param>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <returns>A result object that contains the extracted values or an error message.</returns>
+        public Task<Result<IEnumerable<TechnologyResponseModel>>> Handle(GetAllRequest request, CancellationToken cancellationToken)
         {
-            var categories = await _dbContext.Categories.AsNoTracking()
-                .Select(x => new CategoryModel
-                {
-                    Name = x.Name,
-                    Id = x.Id,
-                }).ToArrayAsync();
+            var result = this.dbContext.Technologies.AsNoTracking()
+                .Select(x => new TechnologyResponseModel
+            {
+                Id = x.Id,
+                Name = x.Name,
+                Description = x.Description,
+            }).AsEnumerable();
 
-            var result = _dbContext.Technologies.AsNoTracking()
-                .GroupJoin(_dbContext.TechnologyCategories,
-                    t => t.Id,
-                    tc => tc.TechnologyId,
-                    (t, tc) => new TechnologyModel
-                    {
-                        Description = t.Description,
-                        Name = t.Name,
-                        Id = t.Id,
-                        Categories = categories.Where(z => tc.Any(tcPair => tcPair.CategoryId == z.Id))
-                        .ToList()
-                    }).AsEnumerable();
-
-            return Result<IEnumerable<TechnologyModel>>.Success(result);
+            return Task.FromResult(Result<IEnumerable<TechnologyResponseModel>>.Success(result));
         }
     }
 }

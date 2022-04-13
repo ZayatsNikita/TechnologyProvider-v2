@@ -4,7 +4,10 @@ using TechnologyProvider.Cqrs.Queries.Categories.Core;
 
 namespace TechnologyProvider.Cqrs.Queries.Categories.GetAll
 {
-    public class GetAllRequest : IRequest<Result<IEnumerable<CategoryModel>>>
+    /// <summary>
+    /// Request to get all categories.
+    /// </summary>
+    public class GetAllRequest : IRequest<Result<IEnumerable<CategoryResponseModel>>>
     {
     }
 }

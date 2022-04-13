@@ -4,7 +4,10 @@ using TechnologyProvider.Cqrs.Queries.Technologies.Core;
 
 namespace TechnologyProvider.Cqrs.Queries.Technologies.GetAll
 {
-    public class GetAllRequest : IRequest<Result<IEnumerable<TechnologyModel>>>
+    /// <summary>
+    /// Request for all technologies.
+    /// </summary>
+    public class GetAllRequest : IRequest<Result<IEnumerable<TechnologyResponseModel>>>
     {
     }
 }

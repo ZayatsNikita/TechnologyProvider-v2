@@ -1,9 +1,9 @@
-﻿namespace TechnologyProvider.DataAccess.Models
+﻿namespace TechnologyProvider.Cqrs.Queries.Categories.Core
 {
     /// <summary>
-    /// A class describing the category.
+    /// Category model to send to the end user.
     /// </summary>
-    public class Category
+    public class CategoryResponseModel
     {
         /// <summary>
         /// Gets or sets category id.

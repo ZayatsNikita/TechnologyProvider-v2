@@ -1,17 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TechnologyProvider.DataAccess.Models
+﻿namespace TechnologyProvider.DataAccess.Models
 {
+    /// <summary>
+    /// A class describing the technology.
+    /// </summary>
     public class Technology
     {
+        /// <summary>
+        /// Gets or sets technology id.
+        /// </summary>
         public int Id { get; set; }
 
+        /// <summary>
+        /// Gets or sets technology name.
+        /// </summary>
         public string Name { get; set; }
 
+        /// <summary>
+        /// Gets or sets description id.
+        /// </summary>
         public string Description { get; set; }
     }
 }

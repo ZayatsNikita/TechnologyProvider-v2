@@ -1,11 +1,18 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Mvc;
 using TechnologyProvider.Cqrs.Core;
 using TechnologyProvider.Cqrs.Queries.Technologies.Core;
 
 namespace TechnologyProvider.Cqrs.Queries.Technologies.GetByCategoryId
 {
-    public class GetByCategoryIdRequest : IRequest<Result<IEnumerable<TechnologyModel>>>
+    /// <summary>
+    /// Request to get a collection of technologies related to a specific category.
+    /// </summary>
+    public class GetByCategoryIdRequest : IRequest<Result<IEnumerable<TechnologyResponseModel>>>
     {
-        public  int Id { get; set; }
+        /// <summary>
+        /// Gets or sets category Code.
+        /// </summary>
+        public int Id { get; set; }
     }
 }

@@ -2,48 +2,56 @@
 using Microsoft.EntityFrameworkCore;
 using TechnologyProvider.Cqrs.Core;
 using TechnologyProvider.Cqrs.Queries.Technologies.Core;
-using TechnologyProvider.DataAccess.Services;
+using TechnologyProvider.DataAccess.Infrastructure.EntityFramework;
 
 namespace TechnologyProvider.Cqrs.Queries.Technologies.GetByCategoryId
 {
-    internal class GetByCategoryIdRequestHandler : IRequestHandler<GetByCategoryIdRequest, Result<IEnumerable<TechnologyModel>>>
+    /// <summary>
+    /// Request handler for getting technologies by category.
+    /// </summary>
+    public class GetByCategoryIdRequestHandler : IRequestHandler<GetByCategoryIdRequest, Result<IEnumerable<TechnologyResponseModel>>>
     {
-        private readonly TechnologyProviderDbContext _dbContext;
+        private readonly TechnologyProviderDbContext dbContext;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GetByCategoryIdRequestHandler"/> class.
+        /// </summary>
+        /// <param name="dbContext">Db context.</param>
         public GetByCategoryIdRequestHandler(TechnologyProviderDbContext dbContext)
         {
-            _dbContext = dbContext;
+            this.dbContext = dbContext;
         }
 
-        public async Task<Result<IEnumerable<TechnologyModel>>> Handle(GetByCategoryIdRequest request, CancellationToken cancellationToken)
+        /// <summary>
+        /// The method that processes the request.
+        /// </summary>
+        /// <param name="request">Request object.</param>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <returns>A result containing technology collection or an error message.</returns>
+        public async Task<Result<IEnumerable<TechnologyResponseModel>>> Handle(GetByCategoryIdRequest request, CancellationToken cancellationToken)
         {
-            var category = await _dbContext.Categories.FirstOrDefaultAsync(x => x.Id == request.Id);
+            var category = await this.dbContext.Categories.FirstOrDefaultAsync(x => x.Id == request.Id);
 
             if (category is null)
             {
-                return Result<IEnumerable<TechnologyModel>>.NotFound("", nameof(request.Id));
+                return Result<IEnumerable<TechnologyResponseModel>>.NotFound(ValidationMessages.NotFoundMessage(nameof(request.Id), request.Id.ToString()), nameof(request.Id));
             }
             else
             {
-                var categories = await _dbContext.Categories.AsNoTracking().ToArrayAsync();
+                var technologies = this.dbContext.TechnologyCategories.AsNoTracking()
+                    .Where(x => x.CategoryId == category.Id)
+                    .Join(
+                        this.dbContext.Technologies.AsNoTracking(),
+                        tc => tc.TechnologyId,
+                        t => t.Id,
+                        (tc, t) => new TechnologyResponseModel
+                        {
+                            Name = t.Name,
+                            Id = t.Id,
+                            Description = t.Description,
+                        }).AsEnumerable();
 
-                var technologies = _dbContext.Technologies.GroupJoin(_dbContext.TechnologyCategories.Where(tc => tc.CategoryId == category.Id),
-                    t => t.Id,
-                    tc => tc.TechnologyId,
-                    (t, tc) => new TechnologyModel
-                    {
-                        Name = t.Name,
-                        Description = t.Description,
-                        Id = t.Id,
-                        Categories = categories.Where(c => tc.Any(x => x.CategoryId == c.Id))
-                            .Select(x => new CategoryModel
-                            {
-                                Id = x.Id,
-                                Name = x.Name,
-                            }).ToList(),
-                    }).AsEnumerable();
-
-                return Result<IEnumerable<TechnologyModel>>.Success(technologies);
+                return Result<IEnumerable<TechnologyResponseModel>>.Success(technologies);
             }
         }
     }

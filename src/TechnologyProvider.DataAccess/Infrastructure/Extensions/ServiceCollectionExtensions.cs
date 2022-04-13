@@ -1,14 +1,22 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using TechnologyProvider.DataAccess.Services;
+using TechnologyProvider.DataAccess.Infrastructure.EntityFramework;
 
 namespace TechnologyProvider.DataAccess.Infrastructure.Extensions
 {
+    /// <summary>
+    /// A class describing extension methods for dependency injection.
+    /// </summary>
     public static class ServiceCollectionExtensions
     {
-        public static void AddStorage(this IServiceCollection services)
+        /// <summary>
+        /// Method for implementing DbContext as dependencies.
+        /// </summary>
+        /// <param name="services">Service collection.</param>
+        /// <param name="connectionString">Connection string.</param>
+        public static void AddStorage(this IServiceCollection services, string connectionString)
         {
-            services.AddDbContext<TechnologyProviderDbContext>(options => options.UseNpgsql("Host=localhost;Port=5432;Database=release_db;Username=mikita;Password=sicretPassword"));
+            services.AddDbContext<TechnologyProviderDbContext>(options => options.UseNpgsql(connectionString));
         }
     }
 }

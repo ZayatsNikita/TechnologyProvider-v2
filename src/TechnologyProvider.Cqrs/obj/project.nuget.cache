@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "rkZ8nJ812YaAyhx+KlhZtgkYxu07xk4Z9pvUBEjGhaIA32t6llW03/YBe26nKYSkb33S1wqKhI1B9UqQyTb+hw==",
+  "dgSpecHash": "jsToIQj38oTKf6IZFS4MSeqtRiQJajgEKCV4yEUXkQnlHtMc5siJlCaS7Qvijjynfkj9oUdW6nPl/mXIi+HuPQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\Mikita_Zayats1\\Documents\\GitHub\\TechnologyProvider\\src\\TechnologyProvider.Cqrs\\TechnologyProvider.Cqrs.csproj",
   "expectedPackageFiles": [
@@ -28,6 +28,7 @@
     "C:\\Users\\Mikita_Zayats1\\.nuget\\packages\\microsoft.extensions.primitives\\6.0.0\\microsoft.extensions.primitives.6.0.0.nupkg.sha512",
     "C:\\Users\\Mikita_Zayats1\\.nuget\\packages\\npgsql\\6.0.0\\npgsql.6.0.0.nupkg.sha512",
     "C:\\Users\\Mikita_Zayats1\\.nuget\\packages\\npgsql.entityframeworkcore.postgresql\\6.0.0\\npgsql.entityframeworkcore.postgresql.6.0.0.nupkg.sha512",
+    "C:\\Users\\Mikita_Zayats1\\.nuget\\packages\\stylecop.analyzers\\1.1.118\\stylecop.analyzers.1.1.118.nupkg.sha512",
     "C:\\Users\\Mikita_Zayats1\\.nuget\\packages\\system.collections.immutable\\6.0.0\\system.collections.immutable.6.0.0.nupkg.sha512",
     "C:\\Users\\Mikita_Zayats1\\.nuget\\packages\\system.diagnostics.diagnosticsource\\6.0.0\\system.diagnostics.diagnosticsource.6.0.0.nupkg.sha512",
     "C:\\Users\\Mikita_Zayats1\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
