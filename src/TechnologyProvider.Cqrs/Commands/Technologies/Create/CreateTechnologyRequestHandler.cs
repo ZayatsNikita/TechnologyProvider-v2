@@ -1,30 +1,38 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
 using TechnologyProvider.Cqrs.Core;
+using TechnologyProvider.DataAccess.Infrastructure.EntityFramework;
 using TechnologyProvider.DataAccess.Models;
-using TechnologyProvider.DataAccess.Services;
 
 namespace TechnologyProvider.Cqrs.Commands.Technologies.Create
 {
-    public class CreateTechnologyRequestHandler : IRequestHandler<CreateTechnologyRequest, Result<CreateTechnologyResultModel>>
+    /// <summary>
+    /// Technology Creation Request Handler.
+    /// </summary>
+    public class CreateTechnologyRequestHandler : IRequestHandler<CreateTechnologyRequest, Result<CreateTechnologyRequestResult>>
     {
-        private readonly TechnologyProviderDbContext _dbContext;
+        private readonly TechnologyProviderDbContext dbContext;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CreateTechnologyRequestHandler"/> class.
+        /// </summary>
+        /// <param name="dbContext">Db Context.</param>
         public CreateTechnologyRequestHandler(TechnologyProviderDbContext dbContext)
         {
-            _dbContext = dbContext;
+            this.dbContext = dbContext;
         }
 
-        public async Task<Result<CreateTechnologyResultModel>> Handle(CreateTechnologyRequest request, CancellationToken cancellationToken)
+        /// <summary>
+        /// Request processing method.
+        /// </summary>
+        /// <param name="request">Request.</param>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <returns><see cref="Result"/> object containing an id or error information.</returns>
+        public async Task<Result<CreateTechnologyRequestResult>> Handle(CreateTechnologyRequest request, CancellationToken cancellationToken)
         {
-            if (await IsThereSameNameInTheStorage(request))
+            if (await this.IsThereSameNameInTheStorage(request))
             {
-                Result<CreateTechnologyResultModel>.ValidationFailed("", nameof(request.Name));
-            }
-
-            if (await AreRelevantCategoriesExist(request))
-            {
-                Result<CreateTechnologyResultModel>.ValidationFailed("", nameof(request.CategoryIds));
+                Result<CreateTechnologyRequestResult>.ValidationFailed(ValidationMessages.FailedValidationRulesMessage(nameof(request.Name), request.Name), nameof(request.Name));
             }
 
             var technology = new Technology
@@ -33,41 +41,21 @@ namespace TechnologyProvider.Cqrs.Commands.Technologies.Create
                 Name = request.Name,
             };
 
-            _dbContext.Set<Technology>().Add(technology);
+            this.dbContext.Technologies.Add(technology);
 
-            _dbContext.Set<TechnologyCategory>().AddRange(request.CategoryIds.Select(x => new TechnologyCategory
+            await this.dbContext.SaveChangesAsync();
+
+            return Result<CreateTechnologyRequestResult>.Success(new CreateTechnologyRequestResult
             {
-                TechnologyId = technology.Id,
-                CategoryId = x,
-            }));
-
-            await _dbContext.SaveChangesAsync();
-
-            var resultModel = new CreateTechnologyResultModel
-            {
-                Description = technology.Description,
-                Name = technology.Name,
-                CategoryIds = request.CategoryIds,
                 Id = technology.Id,
-            };
-
-            return Result<CreateTechnologyResultModel>.Success(resultModel);
+                Name = technology.Name,
+                Description = technology.Description
+            });
         }
 
         private async Task<bool> IsThereSameNameInTheStorage(CreateTechnologyRequest request)
         {
-            return await _dbContext.Set<Technology>().AnyAsync(x => x.Name.ToLower() == request.Name.ToLower());
-        }
-
-        private async Task<bool> AreRelevantCategoriesExist(CreateTechnologyRequest request)
-        {
-            var ids = request.CategoryIds;
-
-            var categoryCodes = await _dbContext.Set<Category>().AsNoTracking()
-                .Select(x => x.Id)
-                .ToArrayAsync();
-
-            return ids.All(x => categoryCodes.Contains(x));
+            return await this.dbContext.Set<Technology>().AnyAsync(x => x.Name.ToLower() == request.Name.ToLower());
         }
     }
 }

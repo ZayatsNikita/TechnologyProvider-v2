@@ -1,39 +1,47 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
 using TechnologyProvider.Cqrs.Core;
-using TechnologyProvider.DataAccess.Models;
-using TechnologyProvider.DataAccess.Services;
+using TechnologyProvider.DataAccess.Infrastructure.EntityFramework;
 
 namespace TechnologyProvider.Cqrs.Commands.Categories.Update
 {
-    public class UpdateCategoryRequestHandler : IRequestHandler<UpdateCategoryRequest, Result<UpdateCategoryResultModel>>
+    /// <summary>
+    /// Handler class for update a category.
+    /// </summary>
+    public class UpdateCategoryRequestHandler : IRequestHandler<UpdateCategoryRequest, Result<object>>
     {
-        private readonly TechnologyProviderDbContext _dbContext;
+        private readonly TechnologyProviderDbContext dbContext;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UpdateCategoryRequestHandler"/> class.
+        /// </summary>
+        /// <param name="dbContext">Db Context.</param>
         public UpdateCategoryRequestHandler(TechnologyProviderDbContext dbContext)
         {
-            _dbContext = dbContext;
+            this.dbContext = dbContext;
         }
 
-        public async Task<Result<UpdateCategoryResultModel>> Handle(UpdateCategoryRequest request, CancellationToken cancellationToken)
+        /// <summary>
+        /// The method that processes the request.
+        /// </summary>
+        /// <param name="request">Request object.</param>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <returns>Just empty object.</returns>
+        public async Task<Result<object>> Handle(UpdateCategoryRequest request, CancellationToken cancellationToken)
         {
-            var oldVersion = await _dbContext.Set<Category>().FirstOrDefaultAsync(x => x.Id == request.Id);
+            var oldVersion = await this.dbContext.Categories
+                .FirstOrDefaultAsync(x => x.Id == request.Id);
+
             if (oldVersion == null)
             {
-                return Result<UpdateCategoryResultModel>.NotFound("", nameof(request.Id));
+                return Result<object>.NotFound(ValidationMessages.NotFoundMessage(nameof(request.Id), request.Id.ToString()), nameof(request.Id));
             }
 
-            oldVersion.Name = request.Name;
+            oldVersion.Name = request.Category.Name;
 
-            await _dbContext.SaveChangesAsync();
+            await this.dbContext.SaveChangesAsync();
 
-            var resultModel = new UpdateCategoryResultModel
-            {
-                Name = request.Name,
-                Id = request.Id,
-            };
-
-            return Result<UpdateCategoryResultModel>.Success(resultModel);
+            return Result<object>.Success(new object());
         }
     }
 }

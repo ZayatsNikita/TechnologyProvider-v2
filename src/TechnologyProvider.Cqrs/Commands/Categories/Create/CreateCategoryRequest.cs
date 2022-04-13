@@ -4,7 +4,10 @@ using TechnologyProvider.Cqrs.Core;
 
 namespace TechnologyProvider.Cqrs.Commands.Categories.Create
 {
-    public class CreateCategoryRequest : CategoryModel, IRequest<Result<CreateCategoryResultModel>>
+    /// <summary>
+    /// Request to create a category.
+    /// </summary>
+    public class CreateCategoryRequest : CategoryModel, IRequest<Result<CreateCategoryRequestResult>>
     {
     }
 }

@@ -4,7 +4,10 @@ using TechnologyProvider.Cqrs.Core;
 
 namespace TechnologyProvider.Cqrs.Commands.Technologies.Create
 {
-    public class CreateTechnologyRequest : TechnologyModel, IRequest<Result<CreateTechnologyResultModel>>
+    /// <summary>
+    /// Technology Creation Request.
+    /// </summary>
+    public class CreateTechnologyRequest : TechnologyModel, IRequest<Result<CreateTechnologyRequestResult>>
     {
     }
 }

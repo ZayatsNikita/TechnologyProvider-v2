@@ -1,97 +1,64 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
 using TechnologyProvider.Cqrs.Core;
+using TechnologyProvider.DataAccess.Infrastructure.EntityFramework;
 using TechnologyProvider.DataAccess.Models;
-using TechnologyProvider.DataAccess.Services;
 
 namespace TechnologyProvider.Cqrs.Commands.Technologies.Update
 {
-    public class UpdateTechnologyRequestHandler : IRequestHandler<UpdateTechnologyRequest, Result<UpdateTechonologyResultModel>>
+    /// <summary>
+    /// Handler class for updating a technology.
+    /// </summary>
+    public class UpdateTechnologyRequestHandler : IRequestHandler<UpdateTechnologyRequest, Result<object>>
     {
-        private readonly TechnologyProviderDbContext _dbContext;
+        private readonly TechnologyProviderDbContext dbContext;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UpdateTechnologyRequestHandler"/> class.
+        /// </summary>
+        /// <param name="dbContext">Db Context.</param>
         public UpdateTechnologyRequestHandler(TechnologyProviderDbContext dbContext)
         {
-            _dbContext = dbContext;
+            this.dbContext = dbContext;
         }
 
-        public async Task<Result<UpdateTechonologyResultModel>> Handle(UpdateTechnologyRequest request, CancellationToken cancellationToken)
+        /// <summary>
+        /// The method that processes the request.
+        /// </summary>
+        /// <param name="request">Request object.</param>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <returns>Just empty object.</returns>
+        public async Task<Result<object>> Handle(UpdateTechnologyRequest request, CancellationToken cancellationToken)
         {
-            var oldVersion = await _dbContext.Set<Technology>().FirstOrDefaultAsync(x => x.Id == request.Id);
+            var oldVersion = await this.dbContext.Set<Technology>().FirstOrDefaultAsync(x => x.Id == request.Id);
             if (oldVersion == null)
             {
-                return Result<UpdateTechonologyResultModel>.NotFound("", nameof(request.Id));
+                return Result<object>.NotFound(ValidationMessages.NotFoundMessage(nameof(request.Id), request.Id.ToString()), nameof(request.Id));
             }
 
-            if (await IsThereSameNameInTheStorage(request, oldVersion))
+            if (await this.IsThereSameNameInTheStorage(request, oldVersion))
             {
-                Result<UpdateTechonologyResultModel>.ValidationFailed("", nameof(request.Name));
+                Result<object>.ValidationFailed(ValidationMessages.FailedValidationRulesMessage(nameof(request.Technology.Name), request.Technology.Name), nameof(request.Technology.Name));
             }
 
-            if (await AreRelevantCategoriesExist(request))
-            {
-                Result<UpdateTechonologyResultModel>.ValidationFailed("", nameof(request.CategoryIds));
-            }
+            oldVersion.Name = request.Technology.Name;
+            oldVersion.Description = request.Technology.Description;
 
-            var oldTechnologyCategories = _dbContext.Set<TechnologyCategory>().AsNoTracking()
-                .Where(x => x.TechnologyId == oldVersion.Id)
-                .ToArray();
+            await this.dbContext.SaveChangesAsync();
 
-            await UpdateTechnologyCategory(request.CategoryIds, oldTechnologyCategories, request.Id);
-
-            oldVersion.Name = request.Name;
-            oldVersion.Description = request.Description;
-
-            await _dbContext.SaveChangesAsync();
-
-            var resultModel = new UpdateTechonologyResultModel
-            {
-                Description = request.Description,
-                Name = request.Name,
-                CategoryIds = request.CategoryIds,
-                Id = request.Id,
-            };
-
-            return Result<UpdateTechonologyResultModel>.Success(resultModel);
-        }
-
-        private async Task UpdateTechnologyCategory(IEnumerable<int> newCategoryCodes, IEnumerable<TechnologyCategory> oldTechnologyCategories, int technologyId)
-        {
-            var newTechnologyCategories = newCategoryCodes.Select(x => new TechnologyCategory
-            {
-                CategoryId = x,
-                TechnologyId = technologyId
-            });
-
-            var toDelete = oldTechnologyCategories.Where(x => newCategoryCodes.All(z => z != x.CategoryId));
-
-            var toAdd = newTechnologyCategories.Where(x => oldTechnologyCategories.All(z => z.CategoryId != x.CategoryId));
-
-            _dbContext.Set<TechnologyCategory>().RemoveRange(toDelete);
-            await _dbContext.Set<TechnologyCategory>().AddRangeAsync(toAdd);
+            return Result<object>.Success(new object());
         }
 
         private async Task<bool> IsThereSameNameInTheStorage(UpdateTechnologyRequest request, Technology oldVersion)
         {
-            if (oldVersion.Name == request.Name)
+            if (oldVersion.Name == request.Technology.Name)
             {
                 return false;
             }
             else
             {
-                return await _dbContext.Set<Technology>().AnyAsync(x => x.Name.ToLower() == request.Name.ToLower());
+                return await this.dbContext.Technologies.AnyAsync(x => x.Name.ToLower() == request.Technology.Name.ToLower());
             }
-        }
-
-        private async Task<bool> AreRelevantCategoriesExist(UpdateTechnologyRequest request)
-        {
-            var ids = request.CategoryIds;
-
-            var categoryCodes = await _dbContext.Categories.AsNoTracking()
-                .Select(x => x.Id)
-                .ToArrayAsync();
-
-            return ids.All(x => categoryCodes.Contains(x));
         }
     }
 }

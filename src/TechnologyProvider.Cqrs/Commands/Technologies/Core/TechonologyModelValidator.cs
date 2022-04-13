@@ -1,25 +1,23 @@
 ﻿using FluentValidation;
-using TechnologyProvider.Cqrs.Infrastructure.Extensions;
 
 namespace TechnologyProvider.Cqrs.Commands.Technologies.Core
 {
+    /// <summary>
+    /// Validator for TechnologyModel.
+    /// </summary>
     public class TechonologyModelValidator : AbstractValidator<TechnologyModel>
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TechonologyModelValidator"/> class.
+        /// </summary>
         public TechonologyModelValidator()
         {
-            RuleFor(x => x.Name).NotEmpty()
+            this.RuleFor(x => x.Name).NotEmpty()
                 .MinimumLength(ValidationConstants.MinNameLength)
                 .MaximumLength(ValidationConstants.MaxNameLength);
 
-            RuleFor(x => x.Description)
+            this.RuleFor(x => x.Description)
                 .MaximumLength(ValidationConstants.MaxDescriptionLength);
-
-            RuleFor(x => x.CategoryIds)
-                .NotEmpty();
-
-            RuleForEach(x => x.CategoryIds).MustBeValidForUseAsId();
-
-            RuleForEach(x => x.CategoryIds).GreaterThanOrEqualTo(ValidationConstants.MinCategoryId);
         }
     }
 }

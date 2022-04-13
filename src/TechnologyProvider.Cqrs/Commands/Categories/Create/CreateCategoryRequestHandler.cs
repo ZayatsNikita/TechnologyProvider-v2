@@ -1,37 +1,48 @@
 ﻿using MediatR;
 using TechnologyProvider.Cqrs.Core;
+using TechnologyProvider.DataAccess.Infrastructure.EntityFramework;
 using TechnologyProvider.DataAccess.Models;
-using TechnologyProvider.DataAccess.Services;
 
 namespace TechnologyProvider.Cqrs.Commands.Categories.Create
 {
-    public class CreateCategoryRequestHandler : IRequestHandler<CreateCategoryRequest, Result<CreateCategoryResultModel>>
+    /// <summary>
+    /// The handler responsible for creating the category.
+    /// </summary>
+    public class CreateCategoryRequestHandler : IRequestHandler<CreateCategoryRequest, Result<CreateCategoryRequestResult>>
     {
-        private readonly TechnologyProviderDbContext _dbContext;
+        private readonly TechnologyProviderDbContext dbContext;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CreateCategoryRequestHandler"/> class.
+        /// </summary>
+        /// <param name="dbContext">Db context object.</param>
         public CreateCategoryRequestHandler(TechnologyProviderDbContext dbContext)
         {
-            _dbContext = dbContext;
+            this.dbContext = dbContext;
         }
 
-        public async Task<Result<CreateCategoryResultModel>> Handle(CreateCategoryRequest request, CancellationToken cancellationToken)
+        /// <summary>
+        /// The method that processes the request.
+        /// </summary>
+        /// <param name="request">Request object.</param>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <returns>Id of the created object.</returns>
+        public async Task<Result<CreateCategoryRequestResult>> Handle(CreateCategoryRequest request, CancellationToken cancellationToken)
         {
             var category = new Category
             {
                 Name = request.Name,
             };
 
-            _dbContext.Set<Category>().Add(category);
+            this.dbContext.Categories.Add(category);
 
-            await _dbContext.SaveChangesAsync();
+            await this.dbContext.SaveChangesAsync();
 
-            var resultModel = new CreateCategoryResultModel
+            return Result<CreateCategoryRequestResult>.Success(new CreateCategoryRequestResult
             {
-                Name = category.Name,
                 Id = category.Id,
-            };
-
-            return Result<CreateCategoryResultModel>.Success(resultModel);
+                Name = request.Name,
+            });
         }
     }
 }
