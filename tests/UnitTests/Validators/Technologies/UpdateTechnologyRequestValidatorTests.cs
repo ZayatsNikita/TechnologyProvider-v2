@@ -1,9 +1,9 @@
-﻿using FluentValidation.TestHelper;
-using TechnologyProvider.Cqrs.Commands.Technologies.Update;
-using Xunit;
-
-namespace UnitTests.Validators.Technologies
+﻿namespace UnitTests.Validators.Technologies
 {
+    using FluentValidation.TestHelper;
+    using TechnologyProvider.Cqrs.Commands.Technologies.Update;
+    using Xunit;
+
     public class UpdateTechnologyRequestValidatorTests
     {
         [Theory]

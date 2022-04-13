@@ -1,9 +1,9 @@
-﻿using FluentValidation.TestHelper;
-using TechnologyProvider.Cqrs.Commands.Categories.Delete;
-using Xunit;
-
-namespace UnitTests.Validators.Categories
+﻿namespace UnitTests.Validators.Categories
 {
+    using FluentValidation.TestHelper;
+    using TechnologyProvider.Cqrs.Commands.Categories.Delete;
+    using Xunit;
+
     public class DeleteCategoryRequestValidatorTests
     {
         [Theory]

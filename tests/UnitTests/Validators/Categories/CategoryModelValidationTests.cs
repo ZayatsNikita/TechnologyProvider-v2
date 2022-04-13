@@ -1,10 +1,10 @@
-﻿using FluentValidation.TestHelper;
-using System.Collections.Generic;
-using TechnologyProvider.Cqrs.Commands.Categories.Core;
-using Xunit;
-
-namespace UnitTests.Validators.Categories
+﻿namespace UnitTests.Validators.Categories
 {
+    using System.Collections.Generic;
+    using FluentValidation.TestHelper;
+    using TechnologyProvider.Cqrs.Commands.Categories.Core;
+    using Xunit;
+
     public class CategoryModelValidationTests
     {
         [Theory, MemberData(nameof(TestDataWithInvalidNames))]

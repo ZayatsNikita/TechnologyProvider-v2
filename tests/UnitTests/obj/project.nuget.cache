@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "2CxI6r8tMFaazZNRWlil/XCL//BCTxgU3j4HRbCFko2k4HA/x9XkO0MJTgDOoMnAPnfrNGtpveyQqtSD+6jOtw==",
+  "dgSpecHash": "oPEUOmhZH+CDnq7wAp3qVd10kDu+Nw+rv+8w5A+eZkse32OsTCrI/RldtnA5pc3Buz+SNqFig8pm593BTT7WnQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\Mikita_Zayats1\\Documents\\GitHub\\TechnologyProvider\\tests\\UnitTests\\UnitTests.csproj",
   "expectedPackageFiles": [
@@ -54,6 +54,7 @@
     "C:\\Users\\Mikita_Zayats1\\.nuget\\packages\\runtime.ubuntu.14.04-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.ubuntu.14.04-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "C:\\Users\\Mikita_Zayats1\\.nuget\\packages\\runtime.ubuntu.16.04-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.ubuntu.16.04-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "C:\\Users\\Mikita_Zayats1\\.nuget\\packages\\runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
+    "C:\\Users\\Mikita_Zayats1\\.nuget\\packages\\stylecop.analyzers\\1.1.118\\stylecop.analyzers.1.1.118.nupkg.sha512",
     "C:\\Users\\Mikita_Zayats1\\.nuget\\packages\\system.appcontext\\4.3.0\\system.appcontext.4.3.0.nupkg.sha512",
     "C:\\Users\\Mikita_Zayats1\\.nuget\\packages\\system.buffers\\4.3.0\\system.buffers.4.3.0.nupkg.sha512",
     "C:\\Users\\Mikita_Zayats1\\.nuget\\packages\\system.collections\\4.3.0\\system.collections.4.3.0.nupkg.sha512",

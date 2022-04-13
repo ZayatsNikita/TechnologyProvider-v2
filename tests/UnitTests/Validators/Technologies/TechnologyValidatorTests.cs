@@ -1,10 +1,10 @@
-﻿using FluentValidation.TestHelper;
-using System.Collections.Generic;
-using TechnologyProvider.Cqrs.Commands.Technologies.Core;
-using Xunit;
-
-namespace UnitTests.Validators.Technologies
+﻿namespace UnitTests.Validators.Technologies
 {
+    using System.Collections.Generic;
+    using FluentValidation.TestHelper;
+    using TechnologyProvider.Cqrs.Commands.Technologies.Core;
+    using Xunit;
+
     public class TechnologyValidatorTests
     {
         [Theory, MemberData(nameof(TestDataForInvalidNames))]
@@ -73,40 +73,6 @@ namespace UnitTests.Validators.Technologies
 
             // Assert
             result.ShouldNotHaveValidationErrorFor(x => x.Description);
-        }
-
-        [Theory, MemberData(nameof(TestDataForInvalidIds))]
-        public void Validate_WhenCategoryIdsIsIncorect_ShouldReturnError(IEnumerable<int>? ids)
-        {
-            // Arrange
-            var validator = new TechonologyModelValidator();
-            var request = new TechnologyModel
-            {
-                CategoryIds = ids,
-            };
-
-            // Act
-            var result = validator.TestValidate(request);
-
-            // Assert
-            result.ShouldHaveValidationErrorFor(x => x.CategoryIds);
-        }
-
-        [Fact]
-        public void Validate_WhenCategoryIdsIsCorect_ShouldNotReturnError()
-        {
-            // Arrange
-            var validator = new TechonologyModelValidator();
-            var request = new TechnologyModel
-            {
-                CategoryIds = new List<int> { 1 },
-            };
-
-            // Act
-            var result = validator.TestValidate(request);
-
-            // Assert
-            result.ShouldNotHaveValidationErrorFor(x => x.CategoryIds);
         }
 
         public static IEnumerable<object[]> TestDataForInvalidNames()
@@ -180,23 +146,5 @@ namespace UnitTests.Validators.Technologies
 
             return testData;
         }
-
-        public static IEnumerable<object[]> TestDataForInvalidIds()
-        {
-            var testData = new List<object[]>
-            {
-                new List<int>[]
-                {
-                    new List<int>(),
-                },
-                new List<int>[]
-                {
-                    null,
-                },
-            };
-
-            return testData;
-        }
-
     }
 }
